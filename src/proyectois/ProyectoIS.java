@@ -15,7 +15,7 @@ public class ProyectoIS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("odiojava");
+        System.out.println("Dani ql");
     }
     
 }
