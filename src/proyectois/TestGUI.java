@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectois;
+package testgui;
 
-
-public class ProyectoIS {
+/**
+ *
+ * @author pauloolivares
+ */
+public class TestGUI {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Dani ql");
-    }
-    
+        Ventana v = new Ventana();
+    }   
 }
