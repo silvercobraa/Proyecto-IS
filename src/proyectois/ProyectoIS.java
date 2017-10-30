@@ -5,10 +5,7 @@
  */
 package proyectois;
 
-/**
- *
- * @author John Smith
- */
+
 public class ProyectoIS {
 
     /**
