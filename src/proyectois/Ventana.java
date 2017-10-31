@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -31,13 +32,13 @@ public class Ventana extends JFrame {
         this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
-        this.addKeyListener(new Listener());
 
         JPanel login = new JPanel();
         login.setLayout(null);
 
         JLabel userLabel = new JLabel("Usuario");
         userLabel.setBounds(10, 10, 80, 25);
+     
         login.add(userLabel);
 
         userText = new JTextField(20);
@@ -64,11 +65,15 @@ public class Ventana extends JFrame {
         Dimension ventana = this.getSize();
         this.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2);
 
+        //Listener l = new Listener();
+        //passwordText.addKeyListener(l);
+        //userText.addKeyListener(l);
         this.add(login);
+
         this.setVisible(true);
     }
 
-    private class Listener implements KeyListener {
+    private class Listener implements KeyListener{
 
         Ventana _v;
 
@@ -93,19 +98,18 @@ public class Ventana extends JFrame {
 
         @Override
         public void keyTyped(KeyEvent ke) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
         @Override
         public void keyPressed(KeyEvent ke) {
             System.out.println("WEA");
-            ingresar();
+            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                ingresar(); 
+            }
         }
 
         @Override
         public void keyReleased(KeyEvent ke) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
-
     }
 }
