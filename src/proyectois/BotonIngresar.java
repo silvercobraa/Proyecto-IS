@@ -27,7 +27,6 @@ public class BotonIngresar extends JButton {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
             String usuario = _v.userText.getText();
             String contraseña = _v.passwordText.getText();
             System.out.println("Usuario: " + usuario + "\nContraseña: " + contraseña);

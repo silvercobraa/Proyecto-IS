@@ -22,7 +22,7 @@ public class Ventana extends JFrame {
     JPasswordField passwordText;
 
     public Ventana() {
-        super("Basura IS");
+        super("Servicio Médico");
         this.setSize(300, 170);
         this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
