@@ -7,7 +7,11 @@ package proyectois;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,14 +27,26 @@ public class BotonIngresar extends JButton {
         this.addActionListener(new Listener());
     }
 
-    private class Listener implements ActionListener {
+    private class Listener implements ActionListener{
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
+        private void ingresar(){
             String usuario = _v.userText.getText();
             String contraseña = _v.passwordText.getText();
             System.out.println("Usuario: " + usuario + "\nContraseña: " + contraseña);
-            System.exit(0);
+            if(usuario.equals("chilote") && contraseña.equals("culiao")){
+                Principal p = new Principal();
+                //System.exit(0);
+                _v.setVisible(false);
+                
+            }
+            else JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos","Error",JOptionPane.WARNING_MESSAGE);
         }
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ingresar();
+        }
+
+      
     }
 }
