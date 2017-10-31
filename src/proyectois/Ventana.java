@@ -38,7 +38,7 @@ public class Ventana extends JFrame {
 
         JLabel userLabel = new JLabel("Usuario");
         userLabel.setBounds(10, 10, 80, 25);
-     
+
         login.add(userLabel);
 
         userText = new JTextField(20);
@@ -65,15 +65,13 @@ public class Ventana extends JFrame {
         Dimension ventana = this.getSize();
         this.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2);
 
-        //Listener l = new Listener();
-        //passwordText.addKeyListener(l);
-        //userText.addKeyListener(l);
-        this.add(login);
 
+        this.add(login);
+        getRootPane().setDefaultButton(loginButton);
         this.setVisible(true);
     }
 
-    private class Listener implements KeyListener{
+    private class Listener extends KeyAdapter {
 
         Ventana _v;
 
@@ -104,7 +102,7 @@ public class Ventana extends JFrame {
         public void keyPressed(KeyEvent ke) {
             System.out.println("WEA");
             if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                ingresar(); 
+                ingresar();
             }
         }
 
