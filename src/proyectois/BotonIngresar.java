@@ -5,13 +5,9 @@
  */
 package proyectois;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import java.awt.event.*;
+import java.sql.*;
+import javax.swing.*;
 
 /**
  *
@@ -27,26 +23,30 @@ public class BotonIngresar extends JButton {
         this.addActionListener(new Listener());
     }
 
-    private class Listener implements ActionListener{
+    private class Listener implements ActionListener {
 
-        private void ingresar(){
-            String usuario = _v.userText.getText();
-            String contraseña = _v.passwordText.getText();
-            System.out.println("Usuario: " + usuario + "\nContraseña: " + contraseña);
-            if(usuario.equals("chilote") && contraseña.equals("culiao")){
-                Principal p = new Principal();
-                //System.exit(0);
-                _v.setVisible(false);
-                
-            }
-            else JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos","Error",JOptionPane.WARNING_MESSAGE);
-        }
-        
         @Override
         public void actionPerformed(ActionEvent e) {
-            ingresar();
+            String usuario = _v.userText.getText();
+            String contraseña = _v.passwordText.getText();
+            if (validarUsuario(usuario, contraseña)) {
+                Principal p = new Principal();
+                _v.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.WARNING_MESSAGE);
+            }
         }
 
-      
+        boolean validarUsuario(String elUsr, String elPw) {
+            try {
+                String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
+                Connection unaConexion = DriverManager.getConnection(url, "bdi2017t", "bdi2017t");
+                Statement instruccionSQL = unaConexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet resultadosConsulta = instruccionSQL.executeQuery("SELECT correo,contrasena FROM trabajador WHERE correo='" + elUsr + "' AND contrasena='" + elPw + "'");
+                return resultadosConsulta.first();
+            } catch (SQLException e) {
+                return false;
+            }
+        }
     }
 }

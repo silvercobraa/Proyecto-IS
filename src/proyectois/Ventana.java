@@ -5,14 +5,7 @@
  */
 package proyectois;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.*;
 
@@ -65,49 +58,8 @@ public class Ventana extends JFrame {
         Dimension ventana = this.getSize();
         this.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2);
 
-
         this.add(login);
         getRootPane().setDefaultButton(loginButton);
         this.setVisible(true);
-    }
-
-    private class Listener extends KeyAdapter {
-
-        Ventana _v;
-
-        public void Listener(Ventana v) {
-            _v = v;
-
-        }
-
-        private void ingresar() {
-            String usuario = _v.userText.getText();
-            String contraseña = _v.passwordText.getText();
-            System.out.println("Usuario: " + usuario + "\nContraseña: " + contraseña);
-            if (usuario.equals("chilote") && contraseña.equals("culiao")) {
-                Principal p = new Principal();
-                //System.exit(0);
-                _v.setVisible(false);
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.WARNING_MESSAGE);
-            }
-        }
-
-        @Override
-        public void keyTyped(KeyEvent ke) {
-        }
-
-        @Override
-        public void keyPressed(KeyEvent ke) {
-            System.out.println("WEA");
-            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                ingresar();
-            }
-        }
-
-        @Override
-        public void keyReleased(KeyEvent ke) {
-        }
     }
 }
