@@ -5,16 +5,15 @@
  */
 package proyectois;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
@@ -25,18 +24,45 @@ public class Principal extends JFrame {
     JPanel loginPanel;
     JTextField userText;
     JPasswordField passwordText;
+    String _user;
 
-    public Principal() {
+    public Principal(String user) throws SQLException {
         super("Servicio Médico");
         this.setSize(800, 600);
         this.setResizable(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
+        _user = user;
 
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
         this.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2);
+
+        PanelFondo pf = new PanelFondo();
+        JPanel wea = new JPanel();
+
+        JButton jb = new JButton("Simulación Beneficio");
+        JButton jb2 = new JButton("Solicitud de devolución");
+        JButton jb3 = new JButton("Historial de devoluciones");
+        JButton jb4 = new JButton("Salir");
+
+        String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
+        Connection unaConexion = DriverManager.getConnection(url, "bdi2017t", "bdi2017t");
+        Statement instruccionSQL = unaConexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet resultadosConsulta = instruccionSQL.executeQuery("SELECT nombre FROM trabajador WHERE correo='" + _user + "'");
+
+        resultadosConsulta.next();
+        String str = resultadosConsulta.getString(1);
+        unaConexion.close();
+        JLabel weaita = new JLabel(str);
+
+        wea.add(jb);
+        wea.add(jb2);
+        wea.add(jb3);
+        wea.add(jb4);
+        this.add(weaita, BorderLayout.SOUTH);
+        this.add(wea, BorderLayout.NORTH);
+        this.add(pf);
         this.setVisible(true);
     }
-
 }
