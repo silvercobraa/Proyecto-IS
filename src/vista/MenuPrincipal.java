@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectois;
+package vista;
 
 import java.awt.*;
 import java.sql.Connection;
@@ -11,6 +11,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.*;
@@ -19,14 +21,14 @@ import javax.swing.*;
  *
  * @author ByPal
  */
-public class Principal extends JFrame {
+public class MenuPrincipal extends JFrame {
 
     JPanel loginPanel;
     JTextField userText;
     JPasswordField passwordText;
     String _user;
 
-    public Principal(String user) throws SQLException {
+    public MenuPrincipal(String user) throws SQLException {
         super("Servicio Médico");
         this.setSize(800, 600);
         this.setResizable(true);
@@ -41,9 +43,9 @@ public class Principal extends JFrame {
         PanelFondo pf = new PanelFondo();
         JPanel wea = new JPanel();
 
-        JButton jb = new JButton("Simulación Beneficio");
-        JButton jb2 = new JButton("Solicitud de devolución");
-        JButton jb3 = new JButton("Historial de devoluciones");
+        BotonSimulacionBeneficio jb = new BotonSimulacionBeneficio();
+        BotonSolicitudDevolucion jb2 = new BotonSolicitudDevolucion();
+        BotonHistorialDevoluciones jb3 = new BotonHistorialDevoluciones();
         JButton jb4 = new JButton("Salir");
 
         String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
@@ -60,6 +62,22 @@ public class Principal extends JFrame {
         wea.add(jb2);
         wea.add(jb3);
         wea.add(jb4);
+
+        String l = "HOLAHOLA";
+        String l2 = "HOLAHOLA2";
+        String l3 = "HOLAHOLA3";
+        String l4 = "HOLAHOLA4";
+
+        Vector vec = new Vector();
+        vec.add(l);
+        vec.add(l2);
+        vec.add(l3);
+        vec.add(l4);
+
+        JList lista = new JList(vec);
+        JScrollPane sp = new JScrollPane(lista);
+
+        this.add(sp, BorderLayout.WEST);
         this.add(weaita, BorderLayout.SOUTH);
         this.add(wea, BorderLayout.NORTH);
         this.add(pf);

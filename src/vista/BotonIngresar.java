@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectois;
+package vista;
 
 import java.awt.event.*;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -15,9 +17,9 @@ import javax.swing.*;
  */
 public class BotonIngresar extends JButton {
 
-    Ventana _v;
+    Login _v;
 
-    public BotonIngresar(Ventana v) {
+    public BotonIngresar(Login v) {
         super("Ingresar");
         _v = v;
         this.addActionListener(new Listener());
@@ -29,8 +31,14 @@ public class BotonIngresar extends JButton {
         public void actionPerformed(ActionEvent e) {
             String usuario = _v.userText.getText();
             String contraseña = _v.passwordText.getText();
+            //String contraseña = _v.passwordText.getSelectedText();
+            System.out.println(contraseña);
             if (validarUsuario(usuario, contraseña)) {
-                Principal p = new Principal();
+                try {
+                    MenuPrincipal p = new MenuPrincipal(usuario);
+                } catch (SQLException ex) {
+                    Logger.getLogger(BotonIngresar.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 _v.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.WARNING_MESSAGE);

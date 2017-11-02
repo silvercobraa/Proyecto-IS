@@ -5,10 +5,10 @@
  */
 package proyectois;
 
-
 public class Afiliado {
+
     /**
-     * 
+     *
      */
     private int aporte_renta;
     /**
@@ -16,33 +16,39 @@ public class Afiliado {
      */
     private String correo;
     /**
-     * 
+     *
      */
     private String cuenta_bancaria;
     /**
      * Identificador único del afiliado (ID).
      */
     private String rut;
-    
+
     private String direccion;
     private String contrasena;
     private int cantidad_horas_trabajadas;
-            public Afiliado() {
-                
-            }
-            /**
-             * Este método recalcula el aporte del afiliado a partir de su renta imponible y la cantidad de cargas.
-             */
-            public void calcularAporteRenta() {
-                
-            }
-            public void consultarMontoHistorico() {
-                
-            }
-            public void descargarDocumento() {
-                
-            }
-            public void solicitarBeneficio() {
-                
-            }
+
+    public Afiliado() {
+
+    }
+
+    /**
+     * Este método recalcula el aporte del afiliado a partir de su renta
+     * imponible y la cantidad de cargas.
+     */
+    public void calcularAporteRenta() {
+
+    }
+
+    public void consultarMontoHistorico() {
+
+    }
+
+    public void descargarDocumento() {
+
+    }
+
+    public void solicitarBeneficio() {
+
+    }
 }

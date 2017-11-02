@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectois;
+package vista;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -17,9 +16,8 @@ import java.sql.SQLException;
 public class TestGUI {
 
     public static void main(String[] args) {
-
         if (TestGUI.connect()) {
-            Ventana v = new Ventana();
+            Login v = new Login();
         }
     }
 

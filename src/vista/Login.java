@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectois;
+package vista;
 
 import java.awt.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -13,13 +13,13 @@ import javax.swing.*;
  *
  * @author pauloolivares
  */
-public class Ventana extends JFrame {
+public class Login extends JFrame {
 
     JPanel loginPanel;
     JTextField userText;
     JPasswordField passwordText;
 
-    public Ventana() {
+    public Login() {
         super("Servicio Médico");
         this.setSize(300, 170);
         this.setResizable(false);
@@ -50,7 +50,7 @@ public class Ventana extends JFrame {
         loginButton.setBounds(10, 100, 100, 25);
         login.add(loginButton);
 
-        BotonRecuperar registerButton = new BotonRecuperar("Recuperar Contraseña");
+        BotonRecuperarContraseña registerButton = new BotonRecuperarContraseña(this);
         registerButton.setBounds(180, 100, 100, 25);
         login.add(registerButton);
 
