@@ -15,9 +15,12 @@ import javax.swing.JButton;
  */
 public class BotonHistorialDevoluciones extends JButton {
 
-    public BotonHistorialDevoluciones() {
+    String _user;
+
+    public BotonHistorialDevoluciones(String user) {
         super("Historial de devoluciones");
         this.addActionListener(new Listener());
+        _user = user;
 
     }
 

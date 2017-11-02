@@ -16,12 +16,16 @@ import javax.swing.JFrame;
  */
 class SolicitudDevolucion extends JFrame {
 
-    public SolicitudDevolucion() {
+    String _user;
+
+    public SolicitudDevolucion(String user) {
 
         super("Solicitud de devolución");
         this.setSize(640, 480);
         this.setResizable(true);
         this.setLayout(new BorderLayout());
+
+        _user = user;
 
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();

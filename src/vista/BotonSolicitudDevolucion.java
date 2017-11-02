@@ -15,9 +15,13 @@ import javax.swing.JButton;
  */
 public class BotonSolicitudDevolucion extends JButton {
 
-    public BotonSolicitudDevolucion() {
+    String _user;
+
+    public BotonSolicitudDevolucion(String user) {
+
         super("Solicitud de Devolución");
         this.addActionListener(new Listener());
+        _user = user;
 
     }
 
@@ -25,7 +29,7 @@ public class BotonSolicitudDevolucion extends JButton {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            SolicitudDevolucion sd = new SolicitudDevolucion();
+            SolicitudDevolucion sd = new SolicitudDevolucion(_user);
         }
     }
 

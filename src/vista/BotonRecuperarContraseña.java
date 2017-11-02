@@ -39,7 +39,7 @@ public class BotonRecuperarContraseña extends JButton {
     public static String claveCorreo = "empresafalsa";
 
     Login _v;
-    
+
     public BotonRecuperarContraseña(Login v) {
         super("Recuperar Contraseña");
         _v = v;

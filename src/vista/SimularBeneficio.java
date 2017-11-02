@@ -32,16 +32,18 @@ import javax.swing.JScrollPane;
  */
 public class SimularBeneficio extends JFrame {
 
+    ArrayList<String> cargas;
     ArrayList<String> medicamentos;
     ArrayList<String> medicos;
     ArrayList<String> examenes;
+    String _user;
 
-    public SimularBeneficio() {
-
+    public SimularBeneficio(String user) {
         super("Simular Beneficio");
         this.setSize(640, 480);
         this.setResizable(true);
-        this.setLayout(new GridLayout(4, 2));
+        this.setLayout(new GridLayout(5, 5));
+        _user = user;
 
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
@@ -71,13 +73,21 @@ public class SimularBeneficio extends JFrame {
         }
         JScrollPane sp3 = new JScrollPane(jp3);
 
-        sp.getVerticalScrollBar().setUnitIncrement(16);
-        sp2.getVerticalScrollBar().setUnitIncrement(16);
-        sp3.getVerticalScrollBar().setUnitIncrement(16);
-        jp.setBackground(Color.YELLOW);
-        jp2.setBackground(Color.WHITE);
-        jp3.setBackground(Color.WHITE);
+        JPanel jp4 = new JPanel();
+        initListaCargas();
+        jp4.setLayout(new GridLayout(cargas.size(), 1));
+        for (int i = 0; i < cargas.size(); i++) {
+            jp4.add(new JCheckBox(cargas.get(i)));
+        }
+        JScrollPane sp4 = new JScrollPane(jp4);
 
+        sp.getVerticalScrollBar().setUnitIncrement(15);
+        sp2.getVerticalScrollBar().setUnitIncrement(15);
+        sp3.getVerticalScrollBar().setUnitIncrement(15);
+        sp4.getVerticalScrollBar().setUnitIncrement(15);
+
+        this.add(new JLabel("Lista de cargas"));
+        this.add(sp4);
         this.add(new JLabel("Lista de Medicamentos"));
         this.add(sp);
         this.add(new JLabel("Lista de Médicos"));
@@ -152,4 +162,26 @@ public class SimularBeneficio extends JFrame {
 
     }
 
+    public void initListaCargas() {
+
+        cargas = new ArrayList();
+        String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
+        String contraseña = null;
+        try {
+            Connection unaConexion = DriverManager.getConnection(url, "bdi2017t", "bdi2017t");
+            Statement instruccionSQL = unaConexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet resultadosConsulta = instruccionSQL.executeQuery("select c.rut,c.nombre from trabajador as t, carga as c where  t.rut=c.RUTP and t.correo='" + _user + "'");
+            System.out.println("select c.nombre,c.rut from trabajador as t, carga as c where  t.rut=c.RUTP and t.correo='" + _user + "'");
+            while (resultadosConsulta.next()) {
+                String a = resultadosConsulta.getString(2);
+                String b = resultadosConsulta.getString(1);
+                String d = a + " - \nRut: " + b;
+                System.out.println(d);
+                cargas.add(d);
+            }
+            unaConexion.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BotonRecuperarContraseña.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

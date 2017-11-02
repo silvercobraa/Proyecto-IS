@@ -15,16 +15,19 @@ import javax.swing.JButton;
  */
 public class BotonSimulacionBeneficio extends JButton {
 
-    public BotonSimulacionBeneficio() {
+    String _user;
+
+    public BotonSimulacionBeneficio(String user) {
         super("Simular Beneficio");
         this.addActionListener(new Listener());
+        _user = user;
     }
 
     private class Listener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            SimularBeneficio sb = new SimularBeneficio();
+            SimularBeneficio sb = new SimularBeneficio(_user);
         }
     }
 }

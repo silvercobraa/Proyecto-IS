@@ -43,9 +43,9 @@ public class MenuPrincipal extends JFrame {
         PanelFondo pf = new PanelFondo();
         JPanel wea = new JPanel();
 
-        BotonSimulacionBeneficio jb = new BotonSimulacionBeneficio();
-        BotonSolicitudDevolucion jb2 = new BotonSolicitudDevolucion();
-        BotonHistorialDevoluciones jb3 = new BotonHistorialDevoluciones();
+        BotonSimulacionBeneficio jb = new BotonSimulacionBeneficio(user);
+        BotonSolicitudDevolucion jb2 = new BotonSolicitudDevolucion(user);
+        BotonHistorialDevoluciones jb3 = new BotonHistorialDevoluciones(user);
         JButton jb4 = new JButton("Salir");
 
         String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
