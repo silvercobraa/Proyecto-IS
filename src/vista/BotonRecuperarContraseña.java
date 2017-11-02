@@ -81,6 +81,7 @@ public class BotonRecuperarContraseña extends JButton {
                 Connection unaConexion = DriverManager.getConnection(url, "bdi2017t", "bdi2017t");
                 Statement instruccionSQL = unaConexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet resultadosConsulta = instruccionSQL.executeQuery("SELECT correo FROM trabajador WHERE correo='" + correo + "'");
+                unaConexion.close();
                 return resultadosConsulta.first();
             } catch (SQLException e) {
                 return false;

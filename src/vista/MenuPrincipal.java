@@ -49,13 +49,13 @@ public class MenuPrincipal extends JFrame {
         JButton jb4 = new JButton("Salir");
 
         String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
-        Connection unaConexion = DriverManager.getConnection(url, "bdi2017t", "bdi2017t");
-        Statement instruccionSQL = unaConexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        ResultSet resultadosConsulta = instruccionSQL.executeQuery("SELECT nombre FROM trabajador WHERE correo='" + _user + "'");
-
-        resultadosConsulta.next();
-        String str = resultadosConsulta.getString(1);
-        unaConexion.close();
+        String str;
+        try (Connection unaConexion = DriverManager.getConnection(url, "bdi2017t", "bdi2017t")) {
+            Statement instruccionSQL = unaConexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet resultadosConsulta = instruccionSQL.executeQuery("SELECT nombre FROM trabajador WHERE correo='" + _user + "'");
+            resultadosConsulta.next();
+            str = "Usuario: " + resultadosConsulta.getString(1);
+        }
         JLabel weaita = new JLabel(str);
 
         wea.add(jb);
@@ -63,21 +63,6 @@ public class MenuPrincipal extends JFrame {
         wea.add(jb3);
         wea.add(jb4);
 
-        String l = "HOLAHOLA";
-        String l2 = "HOLAHOLA2";
-        String l3 = "HOLAHOLA3";
-        String l4 = "HOLAHOLA4";
-
-        Vector vec = new Vector();
-        vec.add(l);
-        vec.add(l2);
-        vec.add(l3);
-        vec.add(l4);
-
-        JList lista = new JList(vec);
-        JScrollPane sp = new JScrollPane(lista);
-
-        this.add(sp, BorderLayout.WEST);
         this.add(weaita, BorderLayout.SOUTH);
         this.add(wea, BorderLayout.NORTH);
         this.add(pf);

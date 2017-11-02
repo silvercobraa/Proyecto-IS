@@ -7,6 +7,7 @@ package vista;
 
 import java.awt.event.*;
 import java.sql.*;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -30,8 +31,8 @@ public class BotonIngresar extends JButton {
         @Override
         public void actionPerformed(ActionEvent e) {
             String usuario = _v.userText.getText();
-            String contraseña = _v.passwordText.getText();
-            //String contraseña = _v.passwordText.getSelectedText();
+            //String contraseña = _v.passwordText.getText();
+            String contraseña = new String(_v.passwordText.getPassword());
             System.out.println(contraseña);
             if (validarUsuario(usuario, contraseña)) {
                 try {
