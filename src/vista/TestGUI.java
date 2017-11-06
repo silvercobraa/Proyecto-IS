@@ -15,6 +15,8 @@ import java.sql.SQLException;
  */
 public class TestGUI {
 
+    public Pool pool = new Pool();
+
     public static void main(String[] args) {
         if (TestGUI.connect()) {
             Login v = new Login();
@@ -22,11 +24,11 @@ public class TestGUI {
     }
 
     public static boolean connect() {
-        System.out.println(" Estableciendo la url de conexión");
         String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
         try {
             System.out.println(" Estableciendo la conexión");
             Connection coneccion = DriverManager.getConnection(url, "bdi2017t", "bdi2017t");
+            //Connection coneccion = pool.dataSource.getConnection();
             System.out.println("Obteniendo los metadatos de la base de datos");
             return true;
         } catch (SQLException e) {

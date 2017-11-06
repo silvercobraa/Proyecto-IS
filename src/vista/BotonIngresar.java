@@ -31,7 +31,6 @@ public class BotonIngresar extends JButton {
         @Override
         public void actionPerformed(ActionEvent e) {
             String usuario = _v.userText.getText();
-            //String contraseña = _v.passwordText.getText();
             String contraseña = new String(_v.passwordText.getPassword());
             System.out.println(contraseña);
             if (validarUsuario(usuario, contraseña)) {
@@ -46,7 +45,7 @@ public class BotonIngresar extends JButton {
             }
         }
 
-        boolean validarUsuario(String elUsr, String elPw) {
+        private boolean validarUsuario(String elUsr, String elPw) {
             try {
                 String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
                 Connection unaConexion = DriverManager.getConnection(url, "bdi2017t", "bdi2017t");
