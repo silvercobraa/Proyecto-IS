@@ -8,6 +8,7 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -18,6 +19,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -25,6 +27,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -40,9 +45,10 @@ public class SimularBeneficio extends JFrame {
 
     public SimularBeneficio(String user) {
         super("Simular Beneficio");
-        this.setSize(640, 480);
+        this.setSize(900, 480);
         this.setResizable(true);
-        this.setLayout(new GridLayout(5, 5));
+        this.setMinimumSize(new Dimension(900,480));
+        this.setLayout(new GridLayout(1,2));
         _user = user;
 
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
@@ -86,16 +92,46 @@ public class SimularBeneficio extends JFrame {
         sp3.getVerticalScrollBar().setUnitIncrement(15);
         sp4.getVerticalScrollBar().setUnitIncrement(15);
 
-        this.add(new JLabel("Lista de cargas"));
-        this.add(sp4);
-        this.add(new JLabel("Lista de Medicamentos"));
-        this.add(sp);
-        this.add(new JLabel("Lista de Médicos"));
-        this.add(sp2);
-        this.add(new JLabel("Lista de Exámenes"));
-        this.add(sp3);
-        this.add(new JButton("Simular"));
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        JPanel izq = new JPanel();
+        JPanel der = new JPanel();
+        izq.setLayout(new GridLayout(4,1));
+        der.setLayout(new GridLayout(4,1));
+        
+        izq.add(new JLabel("Lista de cargas"));
+        der.add(sp4);
+        izq.add(new JLabel("Lista de Medicamentos"));
+        der.add(sp);
+        izq.add(new JLabel("Lista de Médicos"));
+        der.add(sp2);
+        izq.add(new JLabel("Lista de Exámenes"));
+        der.add(sp3);
+        panel.add(izq,BorderLayout.WEST);
+        panel.add(der,BorderLayout.CENTER);
+        this.add(panel, BorderLayout.CENTER);
+
+        JPanel weaita = new JPanel();
+        weaita.setLayout(new BorderLayout());
+
+        weaita.setBackground(Color.yellow);
+        JTable table = new JTable(new DefaultTableModel());
+        table.setBackground(Color.yellow);
+        
+        table.addColumn(new TableColumn());
+        JScrollPane pane = new JScrollPane(table);
+        table.setGridColor(Color.red);
+        pane.setBackground(Color.yellow);
+        table.setForeground(Color.blue);
+        
+        weaita.add(new JLabel("Weás"), BorderLayout.NORTH);        
+        weaita.add(pane, BorderLayout.CENTER);
+        weaita.add(new JButton("Simular"), BorderLayout.SOUTH);
+        
+        
+        this.add(weaita, BorderLayout.EAST);
         this.setVisible(true);
+
     }
 
     public void initListaMedicamentos() {
@@ -163,7 +199,6 @@ public class SimularBeneficio extends JFrame {
     }
 
     public void initListaCargas() {
-
         cargas = new ArrayList();
         String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
         String contraseña = null;
