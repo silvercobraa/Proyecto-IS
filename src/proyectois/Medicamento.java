@@ -6,6 +6,19 @@
 package proyectois;
 
 
-public class Medicamento extends Beneficio {
+public class Medicamento extends ItemSolicitud {
     
+    private String nombre;
+    
+    public Medicamento(){
+        
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }

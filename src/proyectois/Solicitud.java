@@ -4,33 +4,55 @@
  * and open the template in the editor.
  */
 package proyectois;
+
 import java.io.File;
+import java.util.ArrayList;
 
 public class Solicitud {
-    private boolean validada = false;
-    private int id;
-    /** 
-     * Esta es una variable de clase que va a contar las solicitudes realizadas.
-     * Para asignar el id a cada instancia, simplemente asignar el valor del contador.
-     * Esta variable deberia ser atomica.
-     */
+
+    private int ID;
+    private ArrayList items;
     private static int contador = 0;
+
     public Solicitud() {
-        this.id = contador;
+        this.ID = contador;
         contador++;
     }
-    public void agregarDocumento(File documento) {
-        // usar alguna estructura de datos aca
-        // this.documentos.insert(documento);
-    }
-    // Submit. Sube la solicitud para que el validador la revise. Deberia bloquearse la instancia para que no pueda modificarse luego de enviar.
+
     public void enviar() {
-        
+
     }
-    /**
-     * Define quien va a recibir el beneficio (afiliado, carga1, carga2...).
-     */
-    public void setBeneficiario() {
-        
+
+    public void añadirItem() {
     }
+
+    public int totalDevolucion() {
+
+        return 0;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public ArrayList getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList items) {
+        this.items = items;
+    }
+
+    public static int getContador() {
+        return contador;
+    }
+
+    public static void setContador(int contador) {
+        Solicitud.contador = contador;
+    }
+
 }

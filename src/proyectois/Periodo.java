@@ -5,17 +5,31 @@
  */
 package proyectois;
 
+import java.util.Date;
 
 public class Periodo {
-    private int comienzo;
-    private int fin;
+
+    private Date comienzo;
+    private Date fin;
+
     public Periodo() {
-        
+
     }
-    public int getComienzo() {
+
+    public Date getComienzo() {
         return comienzo;
     }
-    public int getFin() {
+
+    public void setComienzo(Date comienzo) {
+        this.comienzo = comienzo;
+    }
+
+    public Date getFin() {
         return fin;
     }
+
+    public void setFin(Date fin) {
+        this.fin = fin;
+    }
+    
 }

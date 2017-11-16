@@ -40,7 +40,7 @@ import javax.swing.text.TableView.TableRow;
  *
  * @author ByPal
  */
-public class SimularBeneficio extends JFrame {
+public class GenerarBeneficio extends JFrame {
 
     ArrayList<String> cargas;
     ArrayList<String> medicamentos;
@@ -48,8 +48,8 @@ public class SimularBeneficio extends JFrame {
     ArrayList<String> examenes;
     String _user;
 
-    public SimularBeneficio(String user) {
-        super("Simular Beneficio");
+    public GenerarBeneficio(String user) {
+        super("Generar Beneficio");
         this.setSize(900, 480);
         this.setResizable(true);
         this.setMinimumSize(new Dimension(900, 480));

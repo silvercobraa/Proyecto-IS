@@ -8,20 +8,14 @@ package proyectois;
 import java.io.File;
 
 public class Documento {
-    private int id;
-    /** 
-     * Esta es una variable de clase que va a contar las solicitudes realizadas.
-     * Para asignar el id a cada instancia, simplemente asignar el valor del contador.
-     * Esta variable deberia ser atomica.
-     */
+    private int ID;
     private static int contador = 0;
 
     public Documento() {
-        this.id = contador;
+        this.ID = contador;
         contador++;
     }
-    public File descargar() {
-        return null;
+    public File descargarDocumento() {
+        return null;     
     }
-    
 }

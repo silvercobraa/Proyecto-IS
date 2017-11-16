@@ -41,8 +41,7 @@ public class MenuPrincipal extends JFrame {
         PanelFondo pf = new PanelFondo();
         JPanel wea = new JPanel();
 
-        BotonSimulacionBeneficio jb = new BotonSimulacionBeneficio(user);
-        BotonSolicitudDevolucion jb2 = new BotonSolicitudDevolucion(user);
+        BotonGenerarBeneficio jb = new BotonGenerarBeneficio(user);
         BotonHistorialDevoluciones jb3 = new BotonHistorialDevoluciones(user);
         JButton jb4 = new JButton("Salir");
 
@@ -57,7 +56,6 @@ public class MenuPrincipal extends JFrame {
         JLabel weaita = new JLabel(str);
 
         wea.add(jb);
-        wea.add(jb2);
         wea.add(jb3);
         wea.add(jb4);
 

@@ -58,12 +58,12 @@ public class BotonRecuperarContraseña extends JButton {
                 String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
                 String contraseña = null;
                 try {
-                    Connection unaConexion = DriverManager.getConnection(url, "bdi2017t", "bdi2017t");
-                    Statement instruccionSQL = unaConexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                    Connection con = DriverManager.getConnection(url, "bdi2017t", "bdi2017t");
+                    Statement instruccionSQL = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                     ResultSet resultadosConsulta = instruccionSQL.executeQuery("SELECT contrasena FROM trabajador WHERE correo='" + usuario + "'");
                     resultadosConsulta.next();
                     contraseña = resultadosConsulta.getString(1);
-                    unaConexion.close();
+                    con.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(BotonRecuperarContraseña.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -77,10 +77,10 @@ public class BotonRecuperarContraseña extends JButton {
         boolean validarCorreo(String correo) {
             try {
                 String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
-                Connection unaConexion = DriverManager.getConnection(url, "bdi2017t", "bdi2017t");
-                Statement instruccionSQL = unaConexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                Connection con = DriverManager.getConnection(url, "bdi2017t", "bdi2017t");
+                Statement instruccionSQL = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet resultadosConsulta = instruccionSQL.executeQuery("SELECT correo FROM trabajador WHERE correo='" + correo + "'");
-                unaConexion.close();
+                con.close();
                 return resultadosConsulta.first();
             } catch (SQLException e) {
                 return false;

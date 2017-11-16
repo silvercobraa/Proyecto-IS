@@ -29,7 +29,7 @@ public class BotonSolicitudDevolucion extends JButton {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            SolicitudDevolucion sd = new SolicitudDevolucion(_user);
+            GenerarBeneficio sd = new GenerarBeneficio(_user);
         }
     }
 

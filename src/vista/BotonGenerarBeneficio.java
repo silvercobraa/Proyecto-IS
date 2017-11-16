@@ -13,12 +13,12 @@ import javax.swing.JButton;
  *
  * @author ByPal
  */
-public class BotonSimulacionBeneficio extends JButton {
+public class BotonGenerarBeneficio extends JButton {
 
     String _user;
 
-    public BotonSimulacionBeneficio(String user) {
-        super("Simular Beneficio");
+    public BotonGenerarBeneficio(String user) {
+        super("Generar Beneficio");
         this.addActionListener(new Listener());
         _user = user;
     }
@@ -27,7 +27,7 @@ public class BotonSimulacionBeneficio extends JButton {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            SimularBeneficio sb = new SimularBeneficio(_user);
+            GenerarBeneficio sb = new GenerarBeneficio(_user);
         }
     }
 }

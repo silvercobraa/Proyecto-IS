@@ -5,37 +5,24 @@
  */
 package proyectois;
 
+import java.util.ArrayList;
+
 public class Afiliado {
 
-    /**
-     *
-     */
-    private int aporte_renta;
-    /**
-     * Correo electrónico del afiliado.
-     */
+    private String nombre;
     private String correo;
-    /**
-     *
-     */
-    private String cuenta_bancaria;
-    /**
-     * Identificador único del afiliado (ID).
-     */
+    private String cuentaBancaria;
     private String rut;
-
     private String direccion;
-    private String contrasena;
-    private int cantidad_horas_trabajadas;
+    private String contraseña;
+    private int cantidadHorasTrabajadas;
+    private int aporteRenta;
+    private ArrayList montoHistorico;
 
     public Afiliado() {
 
     }
 
-    /**
-     * Este método recalcula el aporte del afiliado a partir de su renta
-     * imponible y la cantidad de cargas.
-     */
     public void calcularAporteRenta() {
 
     }
@@ -50,5 +37,77 @@ public class Afiliado {
 
     public void solicitarBeneficio() {
 
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getCuentaBancaria() {
+        return cuentaBancaria;
+    }
+
+    public void setCuentaBancaria(String cuentaBancaria) {
+        this.cuentaBancaria = cuentaBancaria;
+    }
+
+    public String getRut() {
+        return rut;
+    }
+
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public int getCantidadHorasTrabajadas() {
+        return cantidadHorasTrabajadas;
+    }
+
+    public void setCantidadHorasTrabajadas(int cantidadHorasTrabajadas) {
+        this.cantidadHorasTrabajadas = cantidadHorasTrabajadas;
+    }
+
+    public int getAporteRenta() {
+        return aporteRenta;
+    }
+
+    public void setAporteRenta(int aporteRenta) {
+        this.aporteRenta = aporteRenta;
+    }
+
+    public ArrayList getMontoHistorico() {
+        return montoHistorico;
+    }
+
+    public void setMontoHistorico(ArrayList montoHistorico) {
+        this.montoHistorico = montoHistorico;
     }
 }

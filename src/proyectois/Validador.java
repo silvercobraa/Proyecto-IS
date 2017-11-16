@@ -5,15 +5,50 @@
  */
 package proyectois;
 
-
 public class Validador {
+
+    private int rut;
+    private String nombre;
+
     public Validador() {
-        
+
     }
-    public void validar(Solicitud s) {
-        
+
+    public boolean validar(Solicitud s) {
+        return false;
+
     }
+
     public void mandarCorreo(String correo) {
-        
+
+    }
+
+    public int calcularBonificacion() {
+
+        return 0;
+    }
+
+    public void modificarMontoAporte(Afiliado a) {
+
+    }
+
+    public boolean generarDeposito(String cuenta) {
+        return false;
+    }
+
+    public int getRut() {
+        return rut;
+    }
+
+    public void setRut(int rut) {
+        this.rut = rut;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

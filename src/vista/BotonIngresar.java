@@ -7,7 +7,6 @@ package vista;
 
 import java.awt.event.*;
 import java.sql.*;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -48,9 +47,10 @@ public class BotonIngresar extends JButton {
         private boolean validarUsuario(String elUsr, String elPw) {
             try {
                 String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
-                Connection unaConexion = DriverManager.getConnection(url, "bdi2017t", "bdi2017t");
-                Statement instruccionSQL = unaConexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                Connection con = DriverManager.getConnection(url, "bdi2017t", "bdi2017t");
+                Statement instruccionSQL = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet resultadosConsulta = instruccionSQL.executeQuery("SELECT correo,contrasena FROM trabajador WHERE correo='" + elUsr + "' AND contrasena='" + elPw + "'");
+                con.close();
                 return resultadosConsulta.first();
             } catch (SQLException e) {
                 return false;
