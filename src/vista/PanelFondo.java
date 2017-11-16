@@ -20,7 +20,7 @@ public class PanelFondo extends JPanel {
     Image _image;
 
     public PanelFondo() {
-        URL urlBackground_image = getClass().getResource("/imágenes/medicina.png");
+        URL urlBackground_image = getClass().getResource("/imágenes/chilote.jpg");
         this._image = new ImageIcon(urlBackground_image).getImage();
     }
 

@@ -19,7 +19,6 @@ import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -135,6 +134,7 @@ public class BotonRecuperarContraseña extends JButton {
                 transport.close();
                 JOptionPane.showMessageDialog(null, "Su contraseña ha sido enviada a su correo", "Contraseña reenviada", JOptionPane.INFORMATION_MESSAGE);
             } catch (UnsupportedEncodingException | MessagingException ex) {
+                System.out.println(ex.getCause());
                 JOptionPane.showMessageDialog(null, "No se ha podido recuperar su contraseña", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }

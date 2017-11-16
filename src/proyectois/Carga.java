@@ -7,9 +7,13 @@ package proyectois;
 
 
 public class Carga {
-    private String rut;
+    private String _rut;
+    private String _nombre;
+    private Afiliado _padre;
     
     public Carga() {
         
     }
+    
+    
 }

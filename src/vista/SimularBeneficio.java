@@ -11,14 +11,18 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractAction;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -30,6 +34,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.text.TableView.TableRow;
 
 /**
  *
@@ -47,19 +52,26 @@ public class SimularBeneficio extends JFrame {
         super("Simular Beneficio");
         this.setSize(900, 480);
         this.setResizable(true);
-        this.setMinimumSize(new Dimension(900,480));
-        this.setLayout(new GridLayout(1,2));
+        this.setMinimumSize(new Dimension(900, 480));
+        this.setLayout(new GridLayout(1, 2));
         _user = user;
-
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
         this.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2);
 
+        JTable table = new JTable(new DefaultTableModel());
+        DefaultTableModel modelo = (DefaultTableModel) table.getModel();
+        modelo.addColumn("Elementos Agregados");
+        JScrollPane tablePane = new JScrollPane(table);
+
+        ActionListener actionListener = new ActionHandler(modelo);
         JPanel jp = new JPanel();
         initListaMedicamentos();
         jp.setLayout(new GridLayout(medicamentos.size(), 1));
         for (int i = 0; i < medicamentos.size(); i++) {
-            jp.add(new JCheckBox(medicamentos.get(i)));
+            JCheckBox cb = new JCheckBox(medicamentos.get(i));
+            cb.addActionListener(actionListener);
+            jp.add(cb);
         }
         JScrollPane sp = new JScrollPane(jp);
 
@@ -67,7 +79,9 @@ public class SimularBeneficio extends JFrame {
         initListaMedicos();
         jp2.setLayout(new GridLayout(medicos.size(), 1));
         for (int i = 0; i < medicos.size(); i++) {
-            jp2.add(new JCheckBox(medicos.get(i)));
+            JCheckBox cb = new JCheckBox(medicos.get(i));
+            cb.addActionListener(actionListener);
+            jp2.add(cb);
         }
         JScrollPane sp2 = new JScrollPane(jp2);
 
@@ -75,7 +89,9 @@ public class SimularBeneficio extends JFrame {
         initListaExamenes();
         jp3.setLayout(new GridLayout(examenes.size(), 1));
         for (int i = 0; i < examenes.size(); i++) {
-            jp3.add(new JCheckBox(examenes.get(i)));
+            JCheckBox cb = new JCheckBox(examenes.get(i));
+            cb.addActionListener(actionListener);
+            jp3.add(cb);
         }
         JScrollPane sp3 = new JScrollPane(jp3);
 
@@ -83,7 +99,9 @@ public class SimularBeneficio extends JFrame {
         initListaCargas();
         jp4.setLayout(new GridLayout(cargas.size(), 1));
         for (int i = 0; i < cargas.size(); i++) {
-            jp4.add(new JCheckBox(cargas.get(i)));
+            JCheckBox cb = new JCheckBox(cargas.get(i));
+            cb.addActionListener(actionListener);
+            jp4.add(cb);
         }
         JScrollPane sp4 = new JScrollPane(jp4);
 
@@ -96,9 +114,9 @@ public class SimularBeneficio extends JFrame {
         panel.setLayout(new BorderLayout());
         JPanel izq = new JPanel();
         JPanel der = new JPanel();
-        izq.setLayout(new GridLayout(4,1));
-        der.setLayout(new GridLayout(4,1));
-        
+        izq.setLayout(new GridLayout(4, 1));
+        der.setLayout(new GridLayout(4, 1));
+
         izq.add(new JLabel("Lista de cargas"));
         der.add(sp4);
         izq.add(new JLabel("Lista de Medicamentos"));
@@ -107,34 +125,22 @@ public class SimularBeneficio extends JFrame {
         der.add(sp2);
         izq.add(new JLabel("Lista de Exámenes"));
         der.add(sp3);
-        panel.add(izq,BorderLayout.WEST);
-        panel.add(der,BorderLayout.CENTER);
+        panel.add(izq, BorderLayout.WEST);
+        panel.add(der, BorderLayout.CENTER);
         this.add(panel, BorderLayout.CENTER);
 
         JPanel weaita = new JPanel();
         weaita.setLayout(new BorderLayout());
-
-        weaita.setBackground(Color.yellow);
-        JTable table = new JTable(new DefaultTableModel());
-        table.setBackground(Color.yellow);
-        
-        table.addColumn(new TableColumn());
-        JScrollPane pane = new JScrollPane(table);
-        table.setGridColor(Color.red);
-        pane.setBackground(Color.yellow);
-        table.setForeground(Color.blue);
-        
-        weaita.add(new JLabel("Weás"), BorderLayout.NORTH);        
-        weaita.add(pane, BorderLayout.CENTER);
+        weaita.add(new JLabel("Listado de elementos"), BorderLayout.NORTH);
+        weaita.add(tablePane, BorderLayout.CENTER);
         weaita.add(new JButton("Simular"), BorderLayout.SOUTH);
-        
-        
+
         this.add(weaita, BorderLayout.EAST);
         this.setVisible(true);
 
     }
 
-    public void initListaMedicamentos() {
+    private void initListaMedicamentos() {
         medicamentos = new ArrayList();
         String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
         String contraseña = null;
@@ -155,7 +161,7 @@ public class SimularBeneficio extends JFrame {
         }
     }
 
-    public void initListaMedicos() {
+    private void initListaMedicos() {
         medicos = new ArrayList();
         String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
         String contraseña = null;
@@ -176,7 +182,7 @@ public class SimularBeneficio extends JFrame {
         }
     }
 
-    public void initListaExamenes() {
+    private void initListaExamenes() {
         examenes = new ArrayList();
         String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
         String contraseña = null;
@@ -198,7 +204,7 @@ public class SimularBeneficio extends JFrame {
 
     }
 
-    public void initListaCargas() {
+    private void initListaCargas() {
         cargas = new ArrayList();
         String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
         String contraseña = null;
@@ -217,6 +223,31 @@ public class SimularBeneficio extends JFrame {
             unaConexion.close();
         } catch (SQLException ex) {
             Logger.getLogger(BotonRecuperarContraseña.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private static class ActionHandler implements ActionListener {
+
+        DefaultTableModel _modelo;
+
+        public ActionHandler(DefaultTableModel modelo) {
+            _modelo = modelo;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            JCheckBox checkbox = (JCheckBox) event.getSource();
+            System.out.println(checkbox.getText());
+            if (checkbox.isSelected()) {
+                _modelo.addRow(new Object[]{checkbox.getText()});
+            } else {
+                for (int i = 0; i < _modelo.getRowCount(); i++) {
+                    if (checkbox.getText().equals(_modelo.getValueAt(i, 0).toString())) {
+                        _modelo.removeRow(i);
+                        break;
+                    }
+                }
+            }
         }
     }
 }
