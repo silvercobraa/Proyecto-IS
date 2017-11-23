@@ -43,8 +43,8 @@ public class MenuPrincipal extends JFrame {
 
         BotonGenerarBeneficio jb = new BotonGenerarBeneficio(user);
         BotonHistorialDevoluciones jb3 = new BotonHistorialDevoluciones(user);
-        JButton jb4 = new JButton("Salir");
-
+        BotonSalir jb4 = new BotonSalir(this);
+        
         String url = "jdbc:postgresql://plop.inf.udec.cl:5432/bdi2017t";
         String str;
         try (Connection unaConexion = DriverManager.getConnection(url, "bdi2017t", "bdi2017t")) {
